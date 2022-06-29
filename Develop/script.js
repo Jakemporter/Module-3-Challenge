@@ -2,6 +2,7 @@
 var specialCharacters;
 var characterAmount;
 function character() {
+  var char;
   var letters = [
     "a",
     "b",
@@ -70,17 +71,17 @@ function character() {
       caps = Math.floor(Math.random() * 2);
       if (caps === 0) {
         var i2 = Math.floor(Math.random() * letters.length);
-        character = letters[i2];
+        char = letters[i2];
       } else {
         var i2 = Math.floor(Math.random() * letters.length);
-        character = letters[i2].toUpperCase;
+        char = letters[i2].toUpperCase();
       }
     } else if (i === 1) {
       var i2 = Math.floor(Math.random() * numbers.length);
-      character = numbers[i2];
+      char = numbers[i2];
     } else {
       var i2 = Math.floor(Math.random() * characters.length);
-      character = characters[i2];
+      char = characters[i2];
     }
   } else {
     var i = Math.floor(Math.random() * 2);
@@ -88,35 +89,36 @@ function character() {
       caps = Math.floor(Math.random() * 2);
       if (caps === 0) {
         var i2 = Math.floor(Math.random() * letters.length);
-        character = letters[i2];
+        char = letters[i2];
       } else {
         var i2 = Math.floor(Math.random() * letters.length);
-        character = letters[i2].toUpperCase;
+        char = letters[i2].toUpperCase();
       }
     } else {
       var i2 = Math.floor(Math.random() * numbers.length);
-      character = numbers[i2];
+      char = numbers[i2];
     }
   }
-  return character;
+  return char;
 }
 
 function generatePassword() {
-  var password = [];
-  for (i = 0; i < characterAmount.length; ) {
-    password[i].push(character());
+  var passwordArray = [];
+  var i = 0;
+  while (i < characterAmount) {
+    passwordArray[i] = character();
+    i++;
   }
-  password = password.join("");
-  return password;
+  passwordArray = passwordArray.join("");
+  return passwordArray;
 }
-
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
   characterAmount = window.prompt("How many characters?");
-  characterAmount = parseInt(characters);
+  characterAmount = parseInt(characterAmount);
   specialCharacters = window.confirm("Do you want special characters? OK for Yes, Cancel for No");
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
