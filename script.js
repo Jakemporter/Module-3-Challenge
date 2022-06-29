@@ -143,11 +143,11 @@ function writePassword() {
     typeText.value = " ";
     lowerCaseChar = window.confirm("Do you want to include lower case letters?");
     if (lowerCaseChar) {
-      typeText.value += " lowercase,";
+      typeText.value += " lowercase letters,";
     }
     upperCaseChar = window.confirm("Do you want to include upper case letters?");
     if (upperCaseChar) {
-      typeText.value += " uppercase,";
+      typeText.value += " uppercase letters,";
     }
     numbersChar = window.confirm("Do you want to include numbers?");
     if (numbersChar) {
