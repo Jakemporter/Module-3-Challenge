@@ -1,6 +1,9 @@
 // Assignment code here
 var specialCharacters;
 var characterAmount;
+var numbersChar;
+var upperCaseChar;
+var lowerCaseChar;
 function character() {
   var char;
   var letters = [
@@ -69,14 +72,14 @@ function character() {
     var i = Math.floor(Math.random() * 3);
     if (i === 0) {
       caps = Math.floor(Math.random() * 2);
-      if (caps === 0) {
+      if (lowerCaseChar && caps === 0) {
         var i2 = Math.floor(Math.random() * letters.length);
         char = letters[i2];
-      } else {
+      } else if (upperCaseChar) {
         var i2 = Math.floor(Math.random() * letters.length);
         char = letters[i2].toUpperCase();
       }
-    } else if (i === 1) {
+    } else if (numbersChar && i === 1) {
       var i2 = Math.floor(Math.random() * numbers.length);
       char = numbers[i2];
     } else {
@@ -87,14 +90,14 @@ function character() {
     var i = Math.floor(Math.random() * 2);
     if (i === 0) {
       caps = Math.floor(Math.random() * 2);
-      if (caps === 0) {
+      if (lowerCaseChar && caps === 0) {
         var i2 = Math.floor(Math.random() * letters.length);
         char = letters[i2];
-      } else {
+      } else if (upperCaseChar) {
         var i2 = Math.floor(Math.random() * letters.length);
         char = letters[i2].toUpperCase();
       }
-    } else {
+    } else if (numbersChar) {
       var i2 = Math.floor(Math.random() * numbers.length);
       char = numbers[i2];
     }
@@ -105,9 +108,15 @@ function character() {
 function generatePassword() {
   var passwordArray = [];
   var i = 0;
-  while (i < characterAmount) {
-    passwordArray[i] = character();
-    i++;
+  while (true) {
+    var char = character();
+    if (char) {
+      passwordArray[i] = char;
+      i++;
+    }
+    if (passwordArray.length === characterAmount) {
+      break;
+    }
   }
   passwordArray = passwordArray.join("");
   return passwordArray;
@@ -123,7 +132,11 @@ function writePassword() {
   if (characterAmount > 128) {
     passwordText.value = "Password must be below 128 characters";
   } else {
-    specialCharacters = window.confirm("Do you want special characters? OK for Yes, Cancel for No");
+    alert("Use OK for Yes and Cancel for No");
+    lowerCaseChar = window.confirm("Do you want to include lower case letters?");
+    upperCaseChar = window.confirm("Do you want to include upper case letters?");
+    numbersChar = window.confirm("Do you want to include numbers?");
+    specialCharacters = window.confirm("Do you want special characters?");
     var password = generatePassword();
     passwordText.value = password;
   }
