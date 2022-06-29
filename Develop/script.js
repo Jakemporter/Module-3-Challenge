@@ -131,6 +131,8 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
   if (characterAmount > 128) {
     passwordText.value = "Password must be below 128 characters";
+  } else if (characterAmount < 8) {
+    passwordText.value = "Password must be at least 8 characters";
   } else {
     alert("Use OK for Yes and Cancel for No");
     lowerCaseChar = window.confirm("Do you want to include lower case letters?");
