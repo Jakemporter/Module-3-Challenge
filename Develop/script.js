@@ -139,11 +139,24 @@ function writePassword() {
     passwordText.value = "Password must be at least 8 characters";
   } else {
     alert("Use OK for Yes and Cancel for No");
-
+    var typeText = document.querySelector("#types");
+    typeText.value = " ";
     lowerCaseChar = window.confirm("Do you want to include lower case letters?");
+    if (lowerCaseChar) {
+      typeText.value += " lowercase,";
+    }
     upperCaseChar = window.confirm("Do you want to include upper case letters?");
+    if (upperCaseChar) {
+      typeText.value += " uppercase,";
+    }
     numbersChar = window.confirm("Do you want to include numbers?");
+    if (numbersChar) {
+      typeText.value += " numbers,";
+    }
     specialCharacters = window.confirm("Do you want special characters?");
+    if (specialCharacters) {
+      typeText.value += " special characters,";
+    }
     if (!lowerCaseChar && !upperCaseChar && !numbersChar && !specialCharacters) {
       passwordText.value = "Invalid Input";
     } else {
