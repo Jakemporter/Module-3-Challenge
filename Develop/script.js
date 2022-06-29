@@ -139,6 +139,7 @@ function writePassword() {
     passwordText.value = "Password must be at least 8 characters";
   } else {
     alert("Use OK for Yes and Cancel for No");
+
     lowerCaseChar = window.confirm("Do you want to include lower case letters?");
     upperCaseChar = window.confirm("Do you want to include upper case letters?");
     numbersChar = window.confirm("Do you want to include numbers?");
