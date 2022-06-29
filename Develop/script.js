@@ -129,6 +129,10 @@ function writePassword() {
   characterAmount = window.prompt("How many characters?");
   characterAmount = parseInt(characterAmount);
   var passwordText = document.querySelector("#password");
+  if (!characterAmount) {
+    passwordText.value = "Invalid Input";
+    return;
+  }
   if (characterAmount > 128) {
     passwordText.value = "Password must be below 128 characters";
   } else if (characterAmount < 8) {
@@ -139,8 +143,12 @@ function writePassword() {
     upperCaseChar = window.confirm("Do you want to include upper case letters?");
     numbersChar = window.confirm("Do you want to include numbers?");
     specialCharacters = window.confirm("Do you want special characters?");
-    var password = generatePassword();
-    passwordText.value = password;
+    if (!lowerCaseChar && !upperCaseChar && !numbersChar && !specialCharacters) {
+      passwordText.value = "Invalid Input";
+    } else {
+      var password = generatePassword();
+      passwordText.value = password;
+    }
   }
 }
 
