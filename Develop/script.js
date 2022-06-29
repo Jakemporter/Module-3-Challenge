@@ -119,10 +119,14 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   characterAmount = window.prompt("How many characters?");
   characterAmount = parseInt(characterAmount);
-  specialCharacters = window.confirm("Do you want special characters? OK for Yes, Cancel for No");
-  var password = generatePassword();
   var passwordText = document.querySelector("#password");
-  passwordText.value = password;
+  if (characterAmount > 128) {
+    passwordText.value = "Password must be below 128 characters";
+  } else {
+    specialCharacters = window.confirm("Do you want special characters? OK for Yes, Cancel for No");
+    var password = generatePassword();
+    passwordText.value = password;
+  }
 }
 
 // Add event listener to generate button
